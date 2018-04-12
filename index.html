@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Snake Game for good people</title>
+  </head>
+  <body>
+    <center>
+      <canvas id="canvas" width="500" height="500" style="border:1px solid black"/>
+    </center>
+    <script>
+      var rot = 0
+      var plrX = 0
+      var plrY = 0
+      var tailX = []
+      var tailY = []
+      var menu = true
+      var rX = Math.floor(Math.random()*50)*10
+      var rY = Math.floor(Math.random()*50)*10
+      var tailLength = 1
+      var highscore = tailLength-1
+      var canvas = document.getElementById("canvas")
+      var ctx = canvas.getContext("2d")
+      ctx.font = "50px Ariel"
+      setInterval(function(){
+        ctx.clearRect(0,0,500,500)
+        if(menu){
+          ctx.fillStyle="black"
+          ctx.fillText("Highscore: "+(highscore).toString(),0,250)
+          ctx.fillText("Click to start",130,100)
+        }else{
+        ctx.fillStyle="black"
+        ctx.fillRect(plrX,plrY,10,10)
+        for(var i= 0;i<tailLength;i++){
+          ctx.fillRect(tailX[i],tailY[i],10,10)
+        }
+        ctx.fillStyle="red"
+        ctx.fillRect(rX,rY,10,10)
+        if(rot == 0){
+          plrY -= 10
+        }
+        if(rot == 180){
+          plrY +=10
+        }
+        if(rot == 90){
+          plrX += 10
+        }
+        if(rot == 270){
+          plrX -=10
+        }
+        if(plrX < 0){
+          plrX = 500
+        }
+        if(plrY < 0){
+          plrY = 500
+        }
+        if(plrX > 500){
+          plrX = 0
+        }
+        if(plrY > 500){
+          plrY = 0
+        }
+        if(plrX == rX && plrY == rY){
+          rX = Math.floor(Math.random()*50)*10
+          rY = Math.floor(Math.random()*50)*10
+          tailX[tailLength] = plrX
+          tailY[tailLength] = plrY
+          tailLength++
+        }
+        for(var i=tailLength-1;i>-1;i--){
+          if(i == 0){
+            tailX[i] = plrX
+            tailY[i] = plrY
+          }else{
+            tailX[i] = tailX[i-1]
+            tailY[i] = tailY[i-1]
+          }
+          if(tailX[i]==plrX&&tailY[i]==plrY&& i!=0){
+            if(tailLength-1>highscore){
+              highscore = tailLength-1
+            }
+            
+            for(var i = tailLength; i>0;i--){
+              tailX.pop()
+              tailY.pop()
+              //lols
+              //lols
+            }
+            tailLength =0
+            menu = true
+            
+          }
+        }
+        //rot)
+        }
+      },100)
+      document.onmousedown = function(){
+        if(menu){
+        menu = false
+          plrX =0
+          plrY =0
+          rot = 0
+        }
+        rot+=90
+        if(rot == 360){
+          rot = 0
+        }
+      }
+      document.onkeydown = function(e){
+        e=e||window.event
+        //e.keyCode)
+        var res = String.fromCharCode(e.keyCode)
+        if(res == "W"){
+          rot = 0
+          //rot)
+        }
+        if(res == "D"){
+          rot = 90
+          //rot)
+        }
+        if(res == "S"){
+          rot = 180
+          //rot)
+        }
+        if(res == "A"){
+          rot = 270
+          //rot)
+        }
+        
+      }
+    </script>
+  </body>
+</html>
