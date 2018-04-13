@@ -140,7 +140,13 @@
 
       function handleTouchStart(evt) {                                         
         xDown = evt.touches[0].clientX;                                      
-        yDown = evt.touches[0].clientY;                                      
+        yDown = evt.touches[0].clientY;
+        if(menu){
+          menu = false
+          plrX =0
+          plrY =0
+          rot = 90
+        }
       };                                                
 
       function handleTouchMove(evt) {
