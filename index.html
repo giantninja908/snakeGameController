@@ -25,16 +25,17 @@
       ctx.font = "50px Ariel"
       var width
       var height
-      var sizingVar
+      var sizingVar = 1
       height = window.innerHeight
       width = window.innerWidth
       ctx.clearRect(0, 0, width, height)
-
+/*
       if (width < height) {
         sizingVar = width / 500
       } else {
         sizingVar = height / 500
       }
+      */
       canvas.width = sizingVar * 500
       canvas.height = sizingVar * 500
       var rX = Math.floor(Math.random()*50)*10
@@ -43,12 +44,13 @@
         height = window.innerHeight
         width = window.innerWidth
         ctx.clearRect(0, 0, width, height)
-
+/*
         if (width < height) {
           sizingVar = width / 500
         } else {
           sizingVar = height / 500
         }
+        */
         canvas.width = sizingVar * 500
         canvas.height = sizingVar * 500
         ctx.font = (sizingVar*50).toString()+"px Ariel"
