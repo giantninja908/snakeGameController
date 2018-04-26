@@ -265,9 +265,10 @@ if(!pause){
         }
 
       }
-   document.addEventListener("touchmove", function(e){
-     e.preventDefault()
-   },false)  
+   document.addEventListener('touchmove', function(e){
+		e.preventDefault() // prevent scrolling when inside DIV
+	}, false)
+ 
       document.addEventListener('touchstart', handleTouchStart, false);        
       document.addEventListener('touchmove', handleTouchMove, false);
       var xDown = null;                                                        
