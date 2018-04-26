@@ -1,71 +1,163 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Page Title</title>
+    <title>Snake Game w/ grafics</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <center>
-      <canvas id="canvas" width="500" height="500" style="border:1px solid black"/>
+      <img src="images/apple.png" alt="Image description" id="apple" width="0" height="0"/>
+      <img src="images/body-bottom-right.png" alt="Image description" id="bottom-right" width="0" height="0"/>
+      <img src="images/body-left-bottom.png" alt="Image description" id="bottom-left" width="0" height="0"/>
+      <img src="images/body-left-right.png" alt="Image description" id="left-right" width="0" height="0"/>
+      <img src="images/body-left-up.png" alt="Image description" id="left-up" width="0" height="0"/>
+      <img src="images/body-up-bottom.png" alt="Image description" id="bottom-up" width="0" height="0"/>
+      <img src="images/body-up-right.png" alt="Image description" id="up-right" width="0" height="0"/>
+      <img src="images/end-down.png" alt="Image description" id="end-down" width="0" height="0"/>
+      <img src="images/end-left.png" alt="Image description" id="end-left" width="0" height="0"/>
+      <img src="images/end-right.png" alt="Image description" id="end-right" width="0" height="0"/>
+      <img src="images/end-up.png" alt="Image description" id="end-up" width="0" height="0"/>
+      <img src="images/head-down.png" alt="Image description" id="head-down" width="0" height="0"/>
+      <img src="images/head-left.png" alt="Image description" id="head-left" width="0" height="0"/>
+      <img src="images/head-right.png" alt="Image description" id="head-right" width="0" height="0"/>
+      <img src="images/head-up.png" alt="Image description" id="head-up" width="0" height="0"/>
+      <canvas id="canvas" width="500" height="500" style="border:1px solid black" width="0" height="0"/>
+      
     </center>
     <script>
+      var image = document.getElementById("image")
       var auto = false
       var rot = 90
       var plrX = 0
       var plrY = 0
-      var tailX = []
-      var tailY = []
+      var tailX = [-10,-10,-10,-10]
+      var tailY = [-10,-10,-10,-10]
       var right = true
       var count = 0
       var menu = true
       var down = false
-      var tailLength = 1
+      var tailLength = 4
       var highscore = tailLength-1
       var canvas = document.getElementById("canvas")
       var ctx = canvas.getContext("2d")
       ctx.font = "50px Ariel"
       var width
+      var pause = false
       var height
-      var sizingVar = 1
+      var sizingVar = 2
       height = window.innerHeight
       width = window.innerWidth
       ctx.clearRect(0, 0, width, height)
 /*
       if (width < height) {
-        sizingVar = width / 500
+        sizingVar = width / 250
       } else {
-        sizingVar = height / 500
+        sizingVar = height / 250
       }
       */
-      canvas.width = sizingVar * 500
-      canvas.height = sizingVar * 500
-      var rX = Math.floor(Math.random()*50)*10
-      var rY = Math.floor(Math.random()*50)*10
+      canvas.width = sizingVar * 250
+      canvas.height = sizingVar * 250
+      var rX = Math.floor(Math.random()*25)*10
+      var rY = Math.floor(Math.random()*25)*10
       setInterval(function(){
         height = window.innerHeight
         width = window.innerWidth
+        
         ctx.clearRect(0, 0, width, height)
-/*
+        
+
         if (width < height) {
-          sizingVar = width / 500
+          sizingVar = width / 250
         } else {
-          sizingVar = height / 500
+          sizingVar = height / 250
         }
-        */
-        canvas.width = sizingVar * 500
-        canvas.height = sizingVar * 500
-        ctx.font = (sizingVar*50).toString()+"px Ariel"
+        
+        canvas.width = sizingVar * 250
+        canvas.height = sizingVar * 250
+        ctx.font = (sizingVar*25).toString()+"px Ariel"
         if(menu){
           ctx.fillStyle="black"
-          ctx.fillText("Highscore: "+(highscore).toString(),0,250)
-          ctx.fillText("Click to start",130*sizingVar,100*sizingVar)
+          ctx.fillText("Highscore: "+(highscore).toString(),0,125)
+          ctx.fillText("Click to start",65*sizingVar,50*sizingVar)
         }else{
+          
         ctx.fillStyle="black"
-          ctx.fillRect(plrX*sizingVar,plrY*sizingVar,10*sizingVar,10*sizingVar)
+        /*  ctx.fillRect(plrX*sizingVar,plrY*sizingVar,10*sizingVar,10*sizingVar)
+        */
+          //////////////HEHERHEIRHI USDHFIUSDHFIUESHIUFHSUDIHFIUunyefiusndifuysdnifunysdifysdnifunysdifunysifds
+          
         for(var i= 0;i<tailLength;i++){
-          ctx.fillRect(tailX[i]*sizingVar,tailY[i]*sizingVar,10*sizingVar,10*sizingVar)
+        
+              //end tail case
+              
+          
+          if(tailY[i-1] == tailY[i+1] && tailY[i-1] ==  tailY[i]){
+            //left and right
+            ctx.drawImage(document.getElementById("left-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+          }else if(tailX[i-1] == tailX[i+1] && tailX[i-1] ==  tailX[i]){
+          //up and down 
+            ctx.drawImage(document.getElementById("bottom-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+          }else if(tailY[i+1]+10==tailY[i] && tailX[i-1]-10 ==tailX[i]){
+          //up right case 1
+            ctx.drawImage(document.getElementById("up-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+          }else if(tailY[i-1]+10==tailY[i] && tailX[i+1]-10 ==tailX[i]){
+            //up right case 2
+            ctx.drawImage(document.getElementById("up-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+          }else if(tailY[i+1]-10==tailY[i] && tailX[i-1]-10 ==tailX[i]){
+            //down right case 1
+            ctx.drawImage(document.getElementById("bottom-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+          }else if(tailY[i-1]-10==tailY[i] && tailX[i+1]-10 ==tailX[i]){
+            //down right case 2
+            ctx.drawImage(document.getElementById("bottom-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+          }else if(tailY[i-1]-10==tailY[i] && tailX[i+1]+10 ==tailX[i]){
+            //down left case 1
+            ctx.drawImage(document.getElementById("bottom-left"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+          }else if(tailY[i+1]-10==tailY[i] && tailX[i-1]+10 ==tailX[i]){
+            //down left case 2
+            ctx.drawImage(document.getElementById("bottom-left"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+          }else if(tailY[i-1]+10==tailY[i] && tailX[i+1]+10 ==tailX[i]){
+            //up left case 1
+            ctx.drawImage(document.getElementById("left-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+          }else if(tailY[i+1]+10==tailY[i] && tailX[i-1]+10 ==tailX[i]){
+            //up left case 2
+            ctx.drawImage(document.getElementById("left-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+          }else{
+            //end tail case
+            if(tailX[i]+10==tailX[i-1]){
+              //left
+              ctx.drawImage(document.getElementById("end-left"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }
+            if(tailX[i]-10==tailX[i-1]){
+              //right
+              ctx.drawImage(document.getElementById("end-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }
+            if(tailY[i]+10==tailY[i-1]){
+              //up
+              ctx.drawImage(document.getElementById("end-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }
+            if(tailY[i]-10==tailY[i-1]){
+              //down
+              ctx.drawImage(document.getElementById("end-down"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }
+          }
+
+                
         }
+          if(rot == 0){
+            ctx.drawImage(document.getElementById("head-up"), plrX*sizingVar, plrY*sizingVar, 10*sizingVar,10*sizingVar)
+          }
+          if(rot == 90){
+            ctx.drawImage(document.getElementById("head-right"),plrX*sizingVar,plrY*sizingVar,10*sizingVar,10*sizingVar)
+          }
+          if(rot == 180){
+            ctx.drawImage(document.getElementById("head-down"),plrX*sizingVar,plrY*sizingVar,10*sizingVar,10*sizingVar)
+          }
+          if(rot == 270){
+            ctx.drawImage(document.getElementById("head-left"),plrX*sizingVar,plrY*sizingVar,10*sizingVar,10*sizingVar)
+          }
         ctx.fillStyle="red"
-          ctx.fillRect(rX*sizingVar,rY*sizingVar,10*sizingVar,10*sizingVar)
+          ctx.drawImage(document.getElementById("apple"), rX*sizingVar, rY*sizingVar, 10*sizingVar, 10*sizingVar)
+          if(!pause){
         if(rot == 0){
           plrY -= 10
         }
@@ -79,20 +171,21 @@
           plrX -=10
         }
         if(plrX < 0){
-          plrX = 500*sizingVar
+          plrX = 250
         }
         if(plrY < 0){
-          plrY = 500*sizingVar
+          plrY = 250
         }
-        if(plrX > 500*sizingVar){
+        if(plrX > 250){
           plrX = 0
         }
-        if(plrY > 500*sizingVar){
+        if(plrY > 250){
           plrY = 0
         }
+          
         if(plrX == rX && plrY == rY){
-          rX = Math.floor(Math.random()*50)*10
-          rY = Math.floor(Math.random()*50)*10
+          rX = Math.floor(Math.random()*25)*10
+          rY = Math.floor(Math.random()*25)*10
           tailX[tailLength] = plrX
           tailY[tailLength] = plrY
           tailLength++
@@ -110,19 +203,20 @@
               highscore = tailLength-1
             }
             
-            for(var i = tailLength; i>0;i--){
+            for(var i = tailLength; i>4;i--){
               tailX.pop()
               tailY.pop()
               //lols
               //lols
             }
-            tailLength =0
+            tailLength =4
             menu = true
             
           }
         }
+          }
         //rot)
-         
+          
         }
         //(plrX)
         // (plrY)
@@ -156,7 +250,13 @@
           rot = 270
           //rot)
         }
-        
+        if(res == "P"){
+          if(pause){
+            pause = false
+          }else{
+            pause = true
+          }
+        }
         
       }
       document.addEventListener('touchstart', handleTouchStart, false);        
