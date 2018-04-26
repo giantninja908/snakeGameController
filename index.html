@@ -272,7 +272,14 @@
           plrY =0
           rot = 90
         }
-      };                                                
+      };     
+      
+
+document.addEventListener('touchmove', function(e) {
+
+        e.preventDefault();
+
+}, false);
       function handleTouchMove(evt) {
         if ( ! xDown || ! yDown ) {
           return;
