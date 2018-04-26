@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,7 +23,7 @@
       <img src="head-right.png" alt="Image description" id="head-right" width="0" height="0"/>
       <img src="head-up.png" alt="Image description" id="head-up" width="0" height="0"/>
       <canvas id="canvas" width="500" height="500" style="border:1px solid black" width="0" height="0"/>
-      
+
     </center>
     <script>
       var image = document.getElementById("image")
@@ -48,7 +49,7 @@
       height = window.innerHeight
       width = window.innerWidth
       ctx.clearRect(0, 0, width, height)
-/*
+      /*
       if (width < height) {
         sizingVar = width / 250
       } else {
@@ -62,16 +63,15 @@
       setInterval(function(){
         height = window.innerHeight
         width = window.innerWidth
-        
+
         ctx.clearRect(0, 0, width, height)
-        
 
         if (width < height) {
           sizingVar = width / 250
         } else {
           sizingVar = height / 250
         }
-        
+
         canvas.width = sizingVar * 250
         canvas.height = sizingVar * 250
         ctx.font = (sizingVar*25).toString()+"px Ariel"
@@ -80,69 +80,68 @@
           ctx.fillText("Highscore: "+(highscore).toString(),0,125)
           ctx.fillText("Click to start",65*sizingVar,50*sizingVar)
         }else{
-          
-        ctx.fillStyle="black"
-        /*  ctx.fillRect(plrX*sizingVar,plrY*sizingVar,10*sizingVar,10*sizingVar)
+
+          ctx.fillStyle="black"
+          /*  ctx.fillRect(plrX*sizingVar,plrY*sizingVar,10*sizingVar,10*sizingVar)
         */
           //////////////HEHERHEIRHI USDHFIUSDHFIUESHIUFHSUDIHFIUunyefiusndifuysdnifunysdifysdnifunysdifunysifds
-          
-        for(var i= 0;i<tailLength;i++){
-        
-              //end tail case
-              
-          
-          if(tailY[i-1] == tailY[i+1] && tailY[i-1] ==  tailY[i]){
-            //left and right
-            ctx.drawImage(document.getElementById("left-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-          }else if(tailX[i-1] == tailX[i+1] && tailX[i-1] ==  tailX[i]){
-          //up and down 
-            ctx.drawImage(document.getElementById("bottom-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-          }else if(tailY[i+1]+10==tailY[i] && tailX[i-1]-10 ==tailX[i]){
-          //up right case 1
-            ctx.drawImage(document.getElementById("up-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-          }else if(tailY[i-1]+10==tailY[i] && tailX[i+1]-10 ==tailX[i]){
-            //up right case 2
-            ctx.drawImage(document.getElementById("up-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-          }else if(tailY[i+1]-10==tailY[i] && tailX[i-1]-10 ==tailX[i]){
-            //down right case 1
-            ctx.drawImage(document.getElementById("bottom-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-          }else if(tailY[i-1]-10==tailY[i] && tailX[i+1]-10 ==tailX[i]){
-            //down right case 2
-            ctx.drawImage(document.getElementById("bottom-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-          }else if(tailY[i-1]-10==tailY[i] && tailX[i+1]+10 ==tailX[i]){
-            //down left case 1
-            ctx.drawImage(document.getElementById("bottom-left"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-          }else if(tailY[i+1]-10==tailY[i] && tailX[i-1]+10 ==tailX[i]){
-            //down left case 2
-            ctx.drawImage(document.getElementById("bottom-left"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-          }else if(tailY[i-1]+10==tailY[i] && tailX[i+1]+10 ==tailX[i]){
-            //up left case 1
-            ctx.drawImage(document.getElementById("left-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-          }else if(tailY[i+1]+10==tailY[i] && tailX[i-1]+10 ==tailX[i]){
-            //up left case 2
-            ctx.drawImage(document.getElementById("left-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-          }else{
-            //end tail case
-            if(tailX[i]+10==tailX[i-1]){
-              //left
-              ctx.drawImage(document.getElementById("end-left"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-            }
-            if(tailX[i]-10==tailX[i-1]){
-              //right
-              ctx.drawImage(document.getElementById("end-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-            }
-            if(tailY[i]+10==tailY[i-1]){
-              //up
-              ctx.drawImage(document.getElementById("end-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-            }
-            if(tailY[i]-10==tailY[i-1]){
-              //down
-              ctx.drawImage(document.getElementById("end-down"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
-            }
-          }
 
-                
-        }
+          for(var i= 0;i<tailLength;i++){
+
+            //end tail case
+
+
+            if(tailY[i-1] == tailY[i+1] && tailY[i-1] ==  tailY[i]){
+              //left and right
+              ctx.drawImage(document.getElementById("left-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }else if(tailX[i-1] == tailX[i+1] && tailX[i-1] ==  tailX[i]){
+              //up and down 
+              ctx.drawImage(document.getElementById("bottom-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }else if(tailY[i+1]+10==tailY[i] && tailX[i-1]-10 ==tailX[i]){
+              //up right case 1
+              ctx.drawImage(document.getElementById("up-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }else if(tailY[i-1]+10==tailY[i] && tailX[i+1]-10 ==tailX[i]){
+              //up right case 2
+              ctx.drawImage(document.getElementById("up-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }else if(tailY[i+1]-10==tailY[i] && tailX[i-1]-10 ==tailX[i]){
+              //down right case 1
+              ctx.drawImage(document.getElementById("bottom-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }else if(tailY[i-1]-10==tailY[i] && tailX[i+1]-10 ==tailX[i]){
+              //down right case 2
+              ctx.drawImage(document.getElementById("bottom-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }else if(tailY[i-1]-10==tailY[i] && tailX[i+1]+10 ==tailX[i]){
+              //down left case 1
+              ctx.drawImage(document.getElementById("bottom-left"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }else if(tailY[i+1]-10==tailY[i] && tailX[i-1]+10 ==tailX[i]){
+              //down left case 2
+              ctx.drawImage(document.getElementById("bottom-left"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }else if(tailY[i-1]+10==tailY[i] && tailX[i+1]+10 ==tailX[i]){
+              //up left case 1
+              ctx.drawImage(document.getElementById("left-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }else if(tailY[i+1]+10==tailY[i] && tailX[i-1]+10 ==tailX[i]){
+              //up left case 2
+              ctx.drawImage(document.getElementById("left-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+            }else{
+              //end tail case
+              if(tailX[i]+10==tailX[i-1]){
+                //left
+                ctx.drawImage(document.getElementById("end-left"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+              }
+              if(tailX[i]-10==tailX[i-1]){
+                //right
+                ctx.drawImage(document.getElementById("end-right"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+              }
+              if(tailY[i]+10==tailY[i-1]){
+                //up
+                ctx.drawImage(document.getElementById("end-up"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+              }
+              if(tailY[i]-10==tailY[i-1]){
+                //down
+                ctx.drawImage(document.getElementById("end-down"),tailX[i]*sizingVar, tailY[i]*sizingVar, 10*sizingVar, 10*sizingVar)
+              }
+            }
+
+          }
           if(rot == 0){
             ctx.drawImage(document.getElementById("head-up"), plrX*sizingVar, plrY*sizingVar, 10*sizingVar,10*sizingVar)
           }
@@ -155,80 +154,80 @@
           if(rot == 270){
             ctx.drawImage(document.getElementById("head-left"),plrX*sizingVar,plrY*sizingVar,10*sizingVar,10*sizingVar)
           }
-        ctx.fillStyle="red"
+          ctx.fillStyle="red"
           ctx.drawImage(document.getElementById("apple"), rX*sizingVar, rY*sizingVar, 10*sizingVar, 10*sizingVar)
           if(!pause){
-        if(rot == 0){
-          plrY -= 10
-        }
-        if(rot == 180){
-          plrY +=10
-        }
-        if(rot == 90){
-          plrX += 10
-        }
-        if(rot == 270){
-          plrX -=10
-        }
-        if(plrX < 0){
-          plrX = 250
-        }
-        if(plrY < 0){
-          plrY = 250
-        }
-        if(plrX > 250){
-          plrX = 0
-        }
-        if(plrY > 250){
-          plrY = 0
-        }
-          
-        if(plrX == rX && plrY == rY){
-          rX = Math.floor(Math.random()*25)*10
-          rY = Math.floor(Math.random()*25)*10
-          tailX[tailLength] = plrX
-          tailY[tailLength] = plrY
-          tailLength++
-        }
-        for(var i=tailLength-1;i>-1;i--){
-          if(i == 0){
-            tailX[i] = plrX
-            tailY[i] = plrY
-          }else{
-            tailX[i] = tailX[i-1]
-            tailY[i] = tailY[i-1]
-          }
-          if(tailX[i]==plrX&&tailY[i]==plrY&& i!=0){
-            if(tailLength-1>highscore){
-              highscore = tailLength-1
+            if(rot == 0){
+              plrY -= 10
             }
-            
-            for(var i = tailLength; i>4;i--){
-              tailX.pop()
-              tailY.pop()
-              //lols
-              //lols
+            if(rot == 180){
+              plrY +=10
             }
-            tailLength =4
-            menu = true
-            
+            if(rot == 90){
+              plrX += 10
+            }
+            if(rot == 270){
+              plrX -=10
+            }
+            if(plrX < 0){
+              plrX = 250
+            }
+            if(plrY < 0){
+              plrY = 250
+            }
+            if(plrX > 250){
+              plrX = 0
+            }
+            if(plrY > 250){
+              plrY = 0
+            }
+
+            if(plrX == rX && plrY == rY){
+              rX = Math.floor(Math.random()*25)*10
+              rY = Math.floor(Math.random()*25)*10
+              tailX[tailLength] = plrX
+              tailY[tailLength] = plrY
+              tailLength++
+            }
+            for(var i=tailLength-1;i>-1;i--){
+              if(i == 0){
+                tailX[i] = plrX
+                tailY[i] = plrY
+              }else{
+                tailX[i] = tailX[i-1]
+                tailY[i] = tailY[i-1]
+              }
+              if(tailX[i]==plrX&&tailY[i]==plrY&& i!=0){
+                if(tailLength-1>highscore){
+                  highscore = tailLength-1
+                }
+
+                for(var i = tailLength; i>4;i--){
+                  tailX.pop()
+                  tailY.pop()
+                  //lols
+                  //lols
+                }
+                tailLength =4
+                menu = true
+
+              }
+            }
           }
-        }
-          }
-        //rot)
-          
+          //rot)
+
         }
         //(plrX)
         // (plrY)
       },100)
       document.onmousedown = function(){
         if(menu){
-        menu = false
+          menu = false
           plrX =0
           plrY =0
           rot = 90
         }
-        
+
       }
       document.onkeydown = function(e){
         e=e||window.event
@@ -257,14 +256,12 @@
             pause = true
           }
         }
-        
+
       }
       document.addEventListener('touchstart', handleTouchStart, false);        
       document.addEventListener('touchmove', handleTouchMove, false);
-
       var xDown = null;                                                        
       var yDown = null;                                                        
-
       function handleTouchStart(evt) {                                         
         xDown = evt.touches[0].clientX;                                      
         yDown = evt.touches[0].clientY;
@@ -275,18 +272,14 @@
           rot = 90
         }
       };                                                
-
       function handleTouchMove(evt) {
         if ( ! xDown || ! yDown ) {
           return;
         }
-
         var xUp = evt.touches[0].clientX;                                    
         var yUp = evt.touches[0].clientY;
-
         var xDiff = xDown - xUp;
         var yDiff = yDown - yUp;
-
         if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
           if ( xDiff > 0 ) {
             /* left swipe */
