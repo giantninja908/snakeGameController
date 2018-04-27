@@ -1,22 +1,41 @@
 /* Fonts from Google Fonts - more at https://fonts.google.com */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
-canvas {
+body,canvas{
   margin: 0;
   padding: 0;
 }
 body {
-  margin: 0;
-  padding: 0;
-  background-color: white;
-  font-family: "Open Sans", sans-serif;
-  padding: 5px 25px;
-  font-size: 18px;
-  margin: 0;
-  color: #444;
+  animation-name: animation;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  position: relative;
+  background: #aaa;
+}
+.center {
+  animation-name: animation;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  background: #aaaaaa;
+  position: relative;
+  height: 100vh;
+  cursor:url('https://i2.wp.com/s20.postimg.org/96mjh4f71/cur2.jpg'), auto;
 }
 
-h1 {
-  font-family: "Merriweather", serif;
-  font-size: 32px;
+@keyframes animation {
+  0%   {background: purple;}
+  25%  {background: blue;}
+  50%  {background: orange;}
+  75%  {background: blue;}
+  100% {background: purple;}
+}
+
+
+#canvas{
+  background-color: white;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
