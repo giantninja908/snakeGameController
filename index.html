@@ -256,22 +256,27 @@ if(!pause){
         }
         if(res == "A" && rot != 90){
           rot = 270
+		
           //rot)
         }
 	if(e.keyCode == 38 && rot != 180){
           rot = 0
+		e.preventDefault()
           //rot)
         }
         if(e.keyCode == 39 && rot != 270){
           rot = 90
+		e.preventDefault()
           //rot)
         }
         if(e.keyCode == 40 && rot != 0){
           rot = 180
+		e.preventDefault()
           //rot)
         }
         if(e.keyCode == 37 && rot != 90){
           rot = 270
+		e.preventDefault()
           //rot)
         }
         if(res == "P"){
