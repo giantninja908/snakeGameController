@@ -33,6 +33,7 @@
       var rot = 90
       var plrX = 0
       var plrY = 0
+      var time = 0
       var tailX = [-10,-10,-10,-10]
       var tailY = [-10,-10,-10,-10]
       var right = true
@@ -99,16 +100,64 @@ if(!pause){
       plrX -=10
     }
     if(plrX < 0){
-      plrX = 250
+      if(tailLength-1>highscore){
+        highscore = tailLength-1
+      }
+
+      for(var i = tailLength; i>4;i--){
+        tailX.pop()
+        tailY.pop()
+        //lols
+        //lols
+      }
+      tailLength =4
+      menu = true
+
     }
     if(plrY < 0){
-      plrY = 250
+      if(tailLength-1>highscore){
+        highscore = tailLength-1
+      }
+
+      for(var i = tailLength; i>4;i--){
+        tailX.pop()
+        tailY.pop()
+        //lols
+        //lols
+      }
+      tailLength =4
+      menu = true
+
     }
     if(plrX > 250){
-      plrX = 0
+      if(tailLength-1>highscore){
+        highscore = tailLength-1
+      }
+
+      for(var i = tailLength; i>4;i--){
+        tailX.pop()
+        tailY.pop()
+        //lols
+        //lols
+      }
+      tailLength =4
+      menu = true
+
     }
     if(plrY > 250){
-      plrY = 0
+      if(tailLength-1>highscore){
+        highscore = tailLength-1
+      }
+
+      for(var i = tailLength; i>4;i--){
+        tailX.pop()
+        tailY.pop()
+        //lols
+        //lols
+      }
+      tailLength =4
+      menu = true
+
     }
   }
   for(var i=tailLength-1;i>-1;i--){
