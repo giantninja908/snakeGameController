@@ -258,6 +258,22 @@ if(!pause){
           rot = 270
           //rot)
         }
+	if(e.keyCode == 38 && rot != 180){
+          rot = 0
+          //rot)
+        }
+        if(e.keyCode == 39 && rot != 270){
+          rot = 90
+          //rot)
+        }
+        if(e.keyCode == 40 && rot != 0){
+          rot = 180
+          //rot)
+        }
+        if(e.keyCode == 37 && rot != 90){
+          rot = 270
+          //rot)
+        }
         if(res == "P"){
           if(pause){
             pause = false
