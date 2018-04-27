@@ -242,19 +242,19 @@ if(!pause){
         e=e||window.event
         //e.keyCode)
         var res = String.fromCharCode(e.keyCode)
-        if(res == "W"){
+        if(res == "W" && rot != 180){
           rot = 0
           //rot)
         }
-        if(res == "D"){
+        if(res == "D" && rot != 270){
           rot = 90
           //rot)
         }
-        if(res == "S"){
+        if(res == "S" && rot != 0){
           rot = 180
           //rot)
         }
-        if(res == "A"){
+        if(res == "A" && rot != 90){
           rot = 270
           //rot)
         }
