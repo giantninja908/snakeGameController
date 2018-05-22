@@ -32,6 +32,10 @@
       <img src="head-right.png" alt="Image description" id="head-right" width="0" height="0"/>
       <img src="head-up.png" alt="Image description" id="head-up" width="0" height="0"/>
     <script>
+	    if (localStorage.highscore) {
+} else {
+    localStorage.highscore = 0;
+}
       var image = document.getElementById("image")
       var auto = false
       var rot = 90
@@ -45,7 +49,7 @@
       var menu = true
       var down = false
       var tailLength = 4
-      var highscore = tailLength-1
+      var highscore = Number(localStorage.highscore)
       var canvas = document.getElementById("canvas")
       var ctx = canvas.getContext("2d")
       ctx.font = "50px Ariel"
@@ -108,6 +112,7 @@ if(!pause){
 audio.play();
       if(tailLength-1>highscore){
         highscore = tailLength-1
+	      localStorage.highscore = tailLength-1
       }
 
       for(var i = tailLength; i>4;i--){
@@ -125,6 +130,7 @@ audio.play();
 audio.play();
       if(tailLength-1>highscore){
         highscore = tailLength-1
+	      localStorage.highscore = tailLength-1
       }
 
       for(var i = tailLength; i>4;i--){
@@ -142,6 +148,7 @@ audio.play();
 audio.play();
       if(tailLength-1>highscore){
         highscore = tailLength-1
+	      localStorage.highscore = tailLength-1
       }
 
       for(var i = tailLength; i>4;i--){
@@ -159,6 +166,7 @@ audio.play();
 audio.play();
       if(tailLength-1>highscore){
         highscore = tailLength-1
+	      localStorage.highscore = tailLength-1
       }
 
       for(var i = tailLength; i>4;i--){
@@ -185,6 +193,7 @@ audio.play();
 audio.play();
       if(tailLength-1>highscore){
         highscore = tailLength-1
+	      localStorage.highscore = tailLength-1
       }
 
       for(var i = tailLength; i>4;i--){
