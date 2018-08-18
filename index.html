@@ -72,6 +72,11 @@ var rY = Math.floor(Math.random() * 25) * 10
 setInterval(function() {
 var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
     var gp = gamepads[0];
+    for(var i = 0; i<gp.buttons.length;i++){
+  if(buttonPressed(gp.buttons[i])){
+console.log("button "+i+" was pressed")
+  }
+}
 
     height = window.innerHeight
     width = window.innerWidth
