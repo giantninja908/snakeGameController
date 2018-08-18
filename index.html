@@ -53,6 +53,8 @@ var width
 var pause = false
 var height
 var sizingVar = 2
+var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+    var gp = gamepads[0];
 height = window.innerHeight
 width = window.innerWidth
 ctx.clearRect(0, 0, width, height)
