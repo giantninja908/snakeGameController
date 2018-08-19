@@ -99,6 +99,13 @@
 				ctx.fillStyle = "black"
 				ctx.fillText("Highscore: " + (highscore).toString(), 0, 125 * sizingVar)
 				ctx.fillText("Click to start", 65 * sizingVar, 50 * sizingVar)
+				if(buttonPressed(gp.buttons[0])){
+					menu = false
+					plrX = 0
+					plrY = 0
+					rot = 90
+				}
+				
 			} else {
 				if (!pause) {
 
