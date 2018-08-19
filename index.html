@@ -1,474 +1,479 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <link rel="shortcut icon" type = "image/x-icon" href="snake.ico">
-      <title>Snake Game w/ grafics</title>
-      <link rel="stylesheet" href="style.css">
-   </head>
-   <body>
-      <div class="info">
-         <button class="button button3">More Info</button>
-         <button class="button button2">Source Code</button>
-      </div>
-      <div class="center">
-         <canvas id="canvas" width="500" height="500" style="border:1px solid black" width="0" height="0"/>
-      </div>
-      <img src="apple.png" alt="Image description" id="apple" width="0" height="0"/>
-      <img src="body-bottom-right.png" alt="Image description" id="bottom-right" width="0" height="0"/>
-      <img src="body-left-bottom.png" alt="Image description" id="bottom-left" width="0" height="0"/>
-      <img src="body-left-right.png" alt="Image description" id="left-right" width="0" height="0"/>
-      <img src="body-left-up.png" alt="Image description" id="left-up" width="0" height="0"/>
-      <img src="body-up-bottom.png" alt="Image description" id="bottom-up" width="0" height="0"/>
-      <img src="body-up-right.png" alt="Image description" id="up-right" width="0" height="0"/>
-      <img src="end-down.png" alt="Image description" id="end-down" width="0" height="0"/>
-      <img src="end-left.png" alt="Image description" id="end-left" width="0" height="0"/>
-      <img src="end-right.png" alt="Image description" id="end-right" width="0" height="0"/>
-      <img src="end-up.png" alt="Image description" id="end-up" width="0" height="0"/>
-      <img src="head-down.png" alt="Image description" id="head-down" width="0" height="0"/>
-      <img src="head-left.png" alt="Image description" id="head-left" width="0" height="0"/>
-      <img src="head-right.png" alt="Image description" id="head-right" width="0" height="0"/>
-      <img src="head-up.png" alt="Image description" id="head-up" width="0" height="0"/>
-      <script>
-         if (localStorage.highscore) {} else {
-    localStorage.highscore = 0;
-}
-var image = document.getElementById("image")
-var auto = false
-var rot = 90
-var plrX = 0
-var plrY = 0
-var time = 0
-var tailX = [-10, -10, -10, -10]
-var tailY = [-10, -10, -10, -10]
-var right = true
-var count = 0
-var menu = true
-var down = false
-var tailLength = 4
-var highscore = Number(localStorage.highscore)
-var canvas = document.getElementById("canvas")
-var ctx = canvas.getContext("2d")
-ctx.font = "50px Ariel"
-var width
-var pause = false
-var height
-var sizingVar = 2
-var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
-    var gp = gamepads[0];
-height = window.innerHeight
-width = window.innerWidth
-ctx.clearRect(0, 0, width, height)
-/*
-if (width < height) {
-  sizingVar = width / 250
-} else {
-  sizingVar = height / 250
-}
-*/
-canvas.width = sizingVar * 250
-canvas.height = sizingVar * 250
-var rX = Math.floor(Math.random() * 25) * 10
-var rY = Math.floor(Math.random() * 25) * 10
-setInterval(function() {
-var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
-    var gp = gamepads[0];
-    for(var i = 0; i<gp.buttons.length;i++){
-  if(buttonPressed(gp.buttons[i])){
-console.log("button "+i+" was pressed")
-  }
-}
 
-    height = window.innerHeight
-    width = window.innerWidth
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="snake.ico">
+	<title>Snake Game w/ grafics</title>
+	<link rel="stylesheet" href="style.css">
+</head>
 
-    ctx.clearRect(0, 0, width, height)
+<body>
+	<div class="info">
+		<button class="button button3">More Info</button>
+		<button class="button button2">Source Code</button>
+	</div>
+	<div class="center">
+		<canvas id="canvas" width="500" height="500" style="border:1px solid black" width="0" height="0" />
+	</div>
+	<img src="apple.png" alt="Image description" id="apple" width="0" height="0" />
+	<img src="body-bottom-right.png" alt="Image description" id="bottom-right" width="0" height="0" />
+	<img src="body-left-bottom.png" alt="Image description" id="bottom-left" width="0" height="0" />
+	<img src="body-left-right.png" alt="Image description" id="left-right" width="0" height="0" />
+	<img src="body-left-up.png" alt="Image description" id="left-up" width="0" height="0" />
+	<img src="body-up-bottom.png" alt="Image description" id="bottom-up" width="0" height="0" />
+	<img src="body-up-right.png" alt="Image description" id="up-right" width="0" height="0" />
+	<img src="end-down.png" alt="Image description" id="end-down" width="0" height="0" />
+	<img src="end-left.png" alt="Image description" id="end-left" width="0" height="0" />
+	<img src="end-right.png" alt="Image description" id="end-right" width="0" height="0" />
+	<img src="end-up.png" alt="Image description" id="end-up" width="0" height="0" />
+	<img src="head-down.png" alt="Image description" id="head-down" width="0" height="0" />
+	<img src="head-left.png" alt="Image description" id="head-left" width="0" height="0" />
+	<img src="head-right.png" alt="Image description" id="head-right" width="0" height="0" />
+	<img src="head-up.png" alt="Image description" id="head-up" width="0" height="0" />
+	<script>
+		if (localStorage.highscore) {} else {
+			localStorage.highscore = 0;
+		}
+		var image = document.getElementById("image")
+		var auto = false
+		var rot = 90
+		var plrX = 0
+		var plrY = 0
+		var time = 0
+		var tailX = [-10, -10, -10, -10]
+		var tailY = [-10, -10, -10, -10]
+		var right = true
+		var count = 0
+		var menu = true
+		var down = false
+		var tailLength = 4
+		var highscore = Number(localStorage.highscore)
+		var canvas = document.getElementById("canvas")
+		var ctx = canvas.getContext("2d")
+		ctx.font = "50px Ariel"
+		var width
+		var pause = false
+		var height
+		var sizingVar = 2
+		var universalIndex
+		var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+		var gp = gamepads[0];
+		height = window.innerHeight
+		width = window.innerWidth
+		ctx.clearRect(0, 0, width, height)
+		/*
+		if (width < height) {
+		  sizingVar = width / 250
+		} else {
+		  sizingVar = height / 250
+		}
+		*/
+		canvas.width = sizingVar * 250
+		canvas.height = sizingVar * 250
+		var rX = Math.floor(Math.random() * 25) * 10
+		var rY = Math.floor(Math.random() * 25) * 10
+		setInterval(function() {
+			var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+			var gp = gamepads[universalIndex];
+			for (var i = 0; i < gp.buttons.length; i++) {
+				if (buttonPressed(gp.buttons[i])) {
+					console.log("button " + i + " was pressed")
+				}
+			}
 
-    if (width < height) {
-        sizingVar = width / 250
-    } else {
-        sizingVar = height / 250
-    }
+			height = window.innerHeight
+			width = window.innerWidth
 
-    canvas.width = sizingVar * 250
-    canvas.height = sizingVar * 250
-    ctx.font = (sizingVar * 25).toString() + "px Ariel"
-    if (menu) {
-        ctx.fillStyle = "black"
-        ctx.fillText("Highscore: " + (highscore).toString(), 0, 125 * sizingVar)
-        ctx.fillText("Click to start", 65 * sizingVar, 50 * sizingVar)
-    } else {
-        if (!pause) {
+			ctx.clearRect(0, 0, width, height)
 
-            if (!pause) {
+			if (width < height) {
+				sizingVar = width / 250
+			} else {
+				sizingVar = height / 250
+			}
 
-                if (rot == 0) {
-                    plrY -= 10
-                }
-                if (rot == 180) {
-                    plrY += 10
-                }
-                if (rot == 90) {
-                    plrX += 10
-                }
-                if (rot == 270) {
-                    plrX -= 10
-                }
-                if (plrX < 0) {
-                    var audio = new Audio('Roblox Death Sound Effect.mp3');
-                    audio.play();
-                    if (tailLength - 1 > highscore) {
-                        highscore = tailLength - 1
-                        localStorage.highscore = tailLength - 1
-                    }
+			canvas.width = sizingVar * 250
+			canvas.height = sizingVar * 250
+			ctx.font = (sizingVar * 25).toString() + "px Ariel"
+			if (menu) {
+				ctx.fillStyle = "black"
+				ctx.fillText("Highscore: " + (highscore).toString(), 0, 125 * sizingVar)
+				ctx.fillText("Click to start", 65 * sizingVar, 50 * sizingVar)
+			} else {
+				if (!pause) {
 
-                    for (var i = tailLength; i > 4; i--) {
-                        tailX.pop()
-                        tailY.pop()
-                        //lols
-                        //lols
-                    }
-                    tailLength = 4
-                    menu = true
+					if (!pause) {
 
-                }
-                if (plrY < 0) {
-                    var audio = new Audio('Roblox Death Sound Effect.mp3');
-                    audio.play();
-                    if (tailLength - 1 > highscore) {
-                        highscore = tailLength - 1
-                        localStorage.highscore = tailLength - 1
-                    }
+						if (rot == 0) {
+							plrY -= 10
+						}
+						if (rot == 180) {
+							plrY += 10
+						}
+						if (rot == 90) {
+							plrX += 10
+						}
+						if (rot == 270) {
+							plrX -= 10
+						}
+						if (plrX < 0) {
+							var audio = new Audio('Roblox Death Sound Effect.mp3');
+							audio.play();
+							if (tailLength - 1 > highscore) {
+								highscore = tailLength - 1
+								localStorage.highscore = tailLength - 1
+							}
 
-                    for (var i = tailLength; i > 4; i--) {
-                        tailX.pop()
-                        tailY.pop()
-                        //lols
-                        //lols
-                    }
-                    tailLength = 4
-                    menu = true
+							for (var i = tailLength; i > 4; i--) {
+								tailX.pop()
+								tailY.pop()
+								//lols
+								//lols
+							}
+							tailLength = 4
+							menu = true
 
-                }
-                if (plrX > 250) {
-                    var audio = new Audio('Roblox Death Sound Effect.mp3');
-                    audio.play();
-                    if (tailLength - 1 > highscore) {
-                        highscore = tailLength - 1
-                        localStorage.highscore = tailLength - 1
-                    }
+						}
+						if (plrY < 0) {
+							var audio = new Audio('Roblox Death Sound Effect.mp3');
+							audio.play();
+							if (tailLength - 1 > highscore) {
+								highscore = tailLength - 1
+								localStorage.highscore = tailLength - 1
+							}
 
-                    for (var i = tailLength; i > 4; i--) {
-                        tailX.pop()
-                        tailY.pop()
-                        //lols
-                        //lols
-                    }
-                    tailLength = 4
-                    menu = true
+							for (var i = tailLength; i > 4; i--) {
+								tailX.pop()
+								tailY.pop()
+								//lols
+								//lols
+							}
+							tailLength = 4
+							menu = true
 
-                }
-                if (plrY > 250) {
-                    var audio = new Audio('Roblox Death Sound Effect.mp3');
-                    audio.play();
-                    if (tailLength - 1 > highscore) {
-                        highscore = tailLength - 1
-                        localStorage.highscore = tailLength - 1
-                    }
+						}
+						if (plrX > 250) {
+							var audio = new Audio('Roblox Death Sound Effect.mp3');
+							audio.play();
+							if (tailLength - 1 > highscore) {
+								highscore = tailLength - 1
+								localStorage.highscore = tailLength - 1
+							}
 
-                    for (var i = tailLength; i > 4; i--) {
-                        tailX.pop()
-                        tailY.pop()
-                        //lols
-                        //lols
-                    }
-                    tailLength = 4
-                    menu = true
+							for (var i = tailLength; i > 4; i--) {
+								tailX.pop()
+								tailY.pop()
+								//lols
+								//lols
+							}
+							tailLength = 4
+							menu = true
 
-                }
-            }
-            for (var i = tailLength - 1; i > -1; i--) {
-                if (i == 0) {
-                    tailX[i] = plrX
-                    tailY[i] = plrY
-                } else {
-                    tailX[i] = tailX[i - 1]
-                    tailY[i] = tailY[i - 1]
-                }
-                if (tailX[i] == plrX && tailY[i] == plrY && i != 0) {
-                    var audio = new Audio('Roblox Death Sound Effect.mp3');
-                    audio.play();
-                    if (tailLength - 1 > highscore) {
-                        highscore = tailLength - 1
-                        localStorage.highscore = tailLength - 1
-                    }
+						}
+						if (plrY > 250) {
+							var audio = new Audio('Roblox Death Sound Effect.mp3');
+							audio.play();
+							if (tailLength - 1 > highscore) {
+								highscore = tailLength - 1
+								localStorage.highscore = tailLength - 1
+							}
 
-                    for (var i = tailLength; i > 4; i--) {
-                        tailX.pop()
-                        tailY.pop()
-                        //lols
-                        //lols
-                    }
-                    tailLength = 4
-                    menu = true
+							for (var i = tailLength; i > 4; i--) {
+								tailX.pop()
+								tailY.pop()
+								//lols
+								//lols
+							}
+							tailLength = 4
+							menu = true
 
-                }
-            }
-            if (plrX == rX && plrY == rY) {
-                var audio = new Audio('crunch.mp3');
-                audio.play();
-                rX = Math.floor(Math.random() * 25) * 10
-                rY = Math.floor(Math.random() * 25) * 10
-                tailX[tailLength] = plrX
-                tailY[tailLength] = plrY
-                tailLength++
-            }
-        }
-        if (rot == 0) {
-            ctx.drawImage(document.getElementById("head-up"), plrX * sizingVar, plrY * sizingVar, 10 * sizingVar, 10 * sizingVar)
-        }
-        if (rot == 90) {
-            ctx.drawImage(document.getElementById("head-right"), plrX * sizingVar, plrY * sizingVar, 10 * sizingVar, 10 * sizingVar)
-        }
-        if (rot == 180) {
-            ctx.drawImage(document.getElementById("head-down"), plrX * sizingVar, plrY * sizingVar, 10 * sizingVar, 10 * sizingVar)
-        }
-        if (rot == 270) {
-            ctx.drawImage(document.getElementById("head-left"), plrX * sizingVar, plrY * sizingVar, 10 * sizingVar, 10 * sizingVar)
-        }
-        ctx.fillStyle = "black"
-        /*  ctx.fillRect(plrX*sizingVar,plrY*sizingVar,10*sizingVar,10*sizingVar)
-         */
-        //////////////HEHERHEIRHI USDHFIUSDHFIUESHIUFHSUDIHFIUunyefiusndifuysdnifunysdifysdnifunysdifunysifds
+						}
+					}
+					for (var i = tailLength - 1; i > -1; i--) {
+						if (i == 0) {
+							tailX[i] = plrX
+							tailY[i] = plrY
+						} else {
+							tailX[i] = tailX[i - 1]
+							tailY[i] = tailY[i - 1]
+						}
+						if (tailX[i] == plrX && tailY[i] == plrY && i != 0) {
+							var audio = new Audio('Roblox Death Sound Effect.mp3');
+							audio.play();
+							if (tailLength - 1 > highscore) {
+								highscore = tailLength - 1
+								localStorage.highscore = tailLength - 1
+							}
 
-        for (var i = 0; i < tailLength + 1; i++) {
+							for (var i = tailLength; i > 4; i--) {
+								tailX.pop()
+								tailY.pop()
+								//lols
+								//lols
+							}
+							tailLength = 4
+							menu = true
 
+						}
+					}
+					if (plrX == rX && plrY == rY) {
+						var audio = new Audio('crunch.mp3');
+						audio.play();
+						rX = Math.floor(Math.random() * 25) * 10
+						rY = Math.floor(Math.random() * 25) * 10
+						tailX[tailLength] = plrX
+						tailY[tailLength] = plrY
+						tailLength++
+					}
+				}
+				if (rot == 0) {
+					ctx.drawImage(document.getElementById("head-up"), plrX * sizingVar, plrY * sizingVar, 10 * sizingVar, 10 * sizingVar)
+				}
+				if (rot == 90) {
+					ctx.drawImage(document.getElementById("head-right"), plrX * sizingVar, plrY * sizingVar, 10 * sizingVar, 10 * sizingVar)
+				}
+				if (rot == 180) {
+					ctx.drawImage(document.getElementById("head-down"), plrX * sizingVar, plrY * sizingVar, 10 * sizingVar, 10 * sizingVar)
+				}
+				if (rot == 270) {
+					ctx.drawImage(document.getElementById("head-left"), plrX * sizingVar, plrY * sizingVar, 10 * sizingVar, 10 * sizingVar)
+				}
+				ctx.fillStyle = "black"
+				/*  ctx.fillRect(plrX*sizingVar,plrY*sizingVar,10*sizingVar,10*sizingVar)
+				 */
+				//////////////HEHERHEIRHI USDHFIUSDHFIUESHIUFHSUDIHFIUunyefiusndifuysdnifunysdifysdnifunysdifunysifds
 
-            if (tailY[i - 1] == tailY[i + 1] && tailY[i - 1] == tailY[i]) {
-                //left and right
-                ctx.drawImage(document.getElementById("left-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-            } else if (tailX[i - 1] == tailX[i + 1] && tailX[i - 1] == tailX[i]) {
-                //up and down 
-                ctx.drawImage(document.getElementById("bottom-up"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-            } else if (tailY[i + 1] + 10 == tailY[i] && tailX[i - 1] - 10 == tailX[i]) {
-                //up right case 1
-                ctx.drawImage(document.getElementById("up-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-            } else if (tailY[i - 1] + 10 == tailY[i] && tailX[i + 1] - 10 == tailX[i]) {
-                //up right case 2
-                ctx.drawImage(document.getElementById("up-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-            } else if (tailY[i + 1] - 10 == tailY[i] && tailX[i - 1] - 10 == tailX[i]) {
-                //down right case 1
-                ctx.drawImage(document.getElementById("bottom-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-            } else if (tailY[i - 1] - 10 == tailY[i] && tailX[i + 1] - 10 == tailX[i]) {
-                //down right case 2
-                ctx.drawImage(document.getElementById("bottom-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-            } else if (tailY[i - 1] - 10 == tailY[i] && tailX[i + 1] + 10 == tailX[i]) {
-                //down left case 1
-                ctx.drawImage(document.getElementById("bottom-left"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-            } else if (tailY[i + 1] - 10 == tailY[i] && tailX[i - 1] + 10 == tailX[i]) {
-                //down left case 2
-                ctx.drawImage(document.getElementById("bottom-left"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-            } else if (tailY[i - 1] + 10 == tailY[i] && tailX[i + 1] + 10 == tailX[i]) {
-                //up left case 1
-                ctx.drawImage(document.getElementById("left-up"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-            } else if (tailY[i + 1] + 10 == tailY[i] && tailX[i - 1] + 10 == tailX[i]) {
-                //up left case 2
-                ctx.drawImage(document.getElementById("left-up"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-            } else {
-                //end tail case
-                if (tailX[i] + 10 == tailX[i - 1]) {
-                    //left
-                    ctx.drawImage(document.getElementById("end-left"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-                }
-                if (tailX[i] - 10 == tailX[i - 1]) {
-                    //right
-                    ctx.drawImage(document.getElementById("end-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-                }
-                if (tailY[i] + 10 == tailY[i - 1]) {
-                    //up
-                    ctx.drawImage(document.getElementById("end-up"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-                }
-                if (tailY[i] - 10 == tailY[i - 1]) {
-                    //down
-                    ctx.drawImage(document.getElementById("end-down"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
-                }
-            }
-
-        }
-
-        ctx.fillStyle = "red"
-        ctx.drawImage(document.getElementById("apple"), rX * sizingVar, rY * sizingVar, 10 * sizingVar, 10 * sizingVar)
+				for (var i = 0; i < tailLength + 1; i++) {
 
 
-        if (!pause) {
+					if (tailY[i - 1] == tailY[i + 1] && tailY[i - 1] == tailY[i]) {
+						//left and right
+						ctx.drawImage(document.getElementById("left-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+					} else if (tailX[i - 1] == tailX[i + 1] && tailX[i - 1] == tailX[i]) {
+						//up and down 
+						ctx.drawImage(document.getElementById("bottom-up"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+					} else if (tailY[i + 1] + 10 == tailY[i] && tailX[i - 1] - 10 == tailX[i]) {
+						//up right case 1
+						ctx.drawImage(document.getElementById("up-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+					} else if (tailY[i - 1] + 10 == tailY[i] && tailX[i + 1] - 10 == tailX[i]) {
+						//up right case 2
+						ctx.drawImage(document.getElementById("up-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+					} else if (tailY[i + 1] - 10 == tailY[i] && tailX[i - 1] - 10 == tailX[i]) {
+						//down right case 1
+						ctx.drawImage(document.getElementById("bottom-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+					} else if (tailY[i - 1] - 10 == tailY[i] && tailX[i + 1] - 10 == tailX[i]) {
+						//down right case 2
+						ctx.drawImage(document.getElementById("bottom-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+					} else if (tailY[i - 1] - 10 == tailY[i] && tailX[i + 1] + 10 == tailX[i]) {
+						//down left case 1
+						ctx.drawImage(document.getElementById("bottom-left"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+					} else if (tailY[i + 1] - 10 == tailY[i] && tailX[i - 1] + 10 == tailX[i]) {
+						//down left case 2
+						ctx.drawImage(document.getElementById("bottom-left"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+					} else if (tailY[i - 1] + 10 == tailY[i] && tailX[i + 1] + 10 == tailX[i]) {
+						//up left case 1
+						ctx.drawImage(document.getElementById("left-up"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+					} else if (tailY[i + 1] + 10 == tailY[i] && tailX[i - 1] + 10 == tailX[i]) {
+						//up left case 2
+						ctx.drawImage(document.getElementById("left-up"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+					} else {
+						//end tail case
+						if (tailX[i] + 10 == tailX[i - 1]) {
+							//left
+							ctx.drawImage(document.getElementById("end-left"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+						}
+						if (tailX[i] - 10 == tailX[i - 1]) {
+							//right
+							ctx.drawImage(document.getElementById("end-right"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+						}
+						if (tailY[i] + 10 == tailY[i - 1]) {
+							//up
+							ctx.drawImage(document.getElementById("end-up"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+						}
+						if (tailY[i] - 10 == tailY[i - 1]) {
+							//down
+							ctx.drawImage(document.getElementById("end-down"), tailX[i] * sizingVar, tailY[i] * sizingVar, 10 * sizingVar, 10 * sizingVar)
+						}
+					}
 
-        }
+				}
 
-        //rot)
-
-    }
-    //(plrX)
-    // (plrY)
-	
-	if (buttonPressed(gp.buttons[12]) && rot != 180) {
-        rot = 0
-        //rot)
-    }
-    if (buttonPressed(gp.buttons[15]) && rot != 270) {
-        rot = 90
-        //rot)
-    }
-    if (buttonPressed(gp.buttons[13]) && rot != 0) {
-        rot = 180
-        //rot)
-    }
-    if (buttonPressed(gp.buttons[14]) && rot != 90) {
-        rot = 270
-
-        //rot)
-    }
-}, 100)
-document.onmousedown = function() {
-    if (menu) {
-        menu = false
-        plrX = 0
-        plrY = 0
-        rot = 90
-    }
-
-}
-document.onkeydown = function(e) {
-    e = e || window.event
-    //e.keyCode)
-    var res = String.fromCharCode(e.keyCode)
-    if (res == "W" && rot != 180) {
-        rot = 0
-        //rot)
-    }
-    if (res == "D" && rot != 270) {
-        rot = 90
-        //rot)
-    }
-    if (res == "S" && rot != 0) {
-        rot = 180
-        //rot)
-    }
-    if (res == "A" && rot != 90) {
-        rot = 270
-
-        //rot)
-    }
-    if (e.keyCode == 38 && rot != 180) {
-        rot = 0
-        e.preventDefault()
-        //rot)
-    }
-    if (e.keyCode == 39 && rot != 270) {
-        rot = 90
-        e.preventDefault()
-        //rot)
-    }
-    if (e.keyCode == 40 && rot != 0) {
-        rot = 180
-        e.preventDefault()
-        //rot)
-    }
-    if (e.keyCode == 37 && rot != 90) {
-        rot = 270
-        e.preventDefault()
-        //rot)
-    }
-    if (res == "P") {
-        if (pause) {
-            pause = false
-        } else {
-            pause = true
-        }
-    }
-
-}
-document.addEventListener('touchmove', function(e) {
-    e.preventDefault() // prevent scrolling when inside DIV
-}, false)
-
-document.addEventListener('touchstart', handleTouchStart, false);
-document.addEventListener('touchmove', handleTouchMove, false);
-var xDown = null;
-var yDown = null;
-
-function handleTouchStart(evt) {
-    evt.preventDefault()
-    xDown = evt.touches[0].clientX;
-    yDown = evt.touches[0].clientY;
-    if (menu) {
-        menu = false
-        plrX = 0
-        plrY = 0
-        rot = 90
-    }
-};
-
-function handleTouchMove(evt) {
-    if (!xDown || !yDown) {
-        return;
-    }
-    evt.preventDefault()
-    var xUp = evt.touches[0].clientX;
-    var yUp = evt.touches[0].clientY;
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-    if (Math.abs(xDiff) > Math.abs(yDiff)) { /*most significant*/
-        if (xDiff > 0) {
-            /* left swipe */
-            rot = 270
-        } else {
-            /* right swipe */
-            rot = 90
-        }
-    } else {
-        if (yDiff > 0) {
-            /* up swipe */
-            rot = 0
-        } else {
-            /* down swipe */
-            rot = 180
-        }
-    }
-    /* reset values */
-    xDown = null;
-    yDown = null;
-};
-var xPos = null;
-var yPos = null;
-window.addEventListener("touchmove", function(event) {
-    var touch = event.originalEvent.touches[0];
-    oldX = xPos;
-    oldY = yPos;
-    xPos = touch.pageX;
-    yPos = touch.pageY;
-    if (oldX == null && oldY == null) {
-        return false;
-    } else {
-        if (Math.abs(oldX - xPos) > Math.abs(oldY - yPos)) {
-            event.preventDefault();
-            return false;
-        }
-    }
-});
-
-window.addEventListener("gamepadconnected", function(e) {
-    var gp = navigator.getGamepads()[e.gamepad.index];
-    console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
-        gp.index, gp.id,
-        gp.buttons.length, gp.axes.length);
-});
+				ctx.fillStyle = "red"
+				ctx.drawImage(document.getElementById("apple"), rX * sizingVar, rY * sizingVar, 10 * sizingVar, 10 * sizingVar)
 
 
-function buttonPressed(b) {
-    if (typeof(b) == "object") {
-        return b.pressed;
-    }
-    return b == 1.0;
-}
-      </script>
-   </body>
+				if (!pause) {
+
+				}
+
+				//rot)
+
+			}
+			//(plrX)
+			// (plrY)
+
+			if (buttonPressed(gp.buttons[12]) && rot != 180) {
+				rot = 0
+				//rot)
+			}
+			if (buttonPressed(gp.buttons[15]) && rot != 270) {
+				rot = 90
+				//rot)
+			}
+			if (buttonPressed(gp.buttons[13]) && rot != 0) {
+				rot = 180
+				//rot)
+			}
+			if (buttonPressed(gp.buttons[14]) && rot != 90) {
+				rot = 270
+
+				//rot)
+			}
+		}, 100)
+		document.onmousedown = function() {
+			if (menu) {
+				menu = false
+				plrX = 0
+				plrY = 0
+				rot = 90
+			}
+
+		}
+		document.onkeydown = function(e) {
+			e = e || window.event
+			//e.keyCode)
+			var res = String.fromCharCode(e.keyCode)
+			if (res == "W" && rot != 180) {
+				rot = 0
+				//rot)
+			}
+			if (res == "D" && rot != 270) {
+				rot = 90
+				//rot)
+			}
+			if (res == "S" && rot != 0) {
+				rot = 180
+				//rot)
+			}
+			if (res == "A" && rot != 90) {
+				rot = 270
+
+				//rot)
+			}
+			if (e.keyCode == 38 && rot != 180) {
+				rot = 0
+				e.preventDefault()
+				//rot)
+			}
+			if (e.keyCode == 39 && rot != 270) {
+				rot = 90
+				e.preventDefault()
+				//rot)
+			}
+			if (e.keyCode == 40 && rot != 0) {
+				rot = 180
+				e.preventDefault()
+				//rot)
+			}
+			if (e.keyCode == 37 && rot != 90) {
+				rot = 270
+				e.preventDefault()
+				//rot)
+			}
+			if (res == "P") {
+				if (pause) {
+					pause = false
+				} else {
+					pause = true
+				}
+			}
+
+		}
+		document.addEventListener('touchmove', function(e) {
+			e.preventDefault() // prevent scrolling when inside DIV
+		}, false)
+
+		document.addEventListener('touchstart', handleTouchStart, false);
+		document.addEventListener('touchmove', handleTouchMove, false);
+		var xDown = null;
+		var yDown = null;
+
+		function handleTouchStart(evt) {
+			evt.preventDefault()
+			xDown = evt.touches[0].clientX;
+			yDown = evt.touches[0].clientY;
+			if (menu) {
+				menu = false
+				plrX = 0
+				plrY = 0
+				rot = 90
+			}
+		};
+
+		function handleTouchMove(evt) {
+			if (!xDown || !yDown) {
+				return;
+			}
+			evt.preventDefault()
+			var xUp = evt.touches[0].clientX;
+			var yUp = evt.touches[0].clientY;
+			var xDiff = xDown - xUp;
+			var yDiff = yDown - yUp;
+			if (Math.abs(xDiff) > Math.abs(yDiff)) { /*most significant*/
+				if (xDiff > 0) {
+					/* left swipe */
+					rot = 270
+				} else {
+					/* right swipe */
+					rot = 90
+				}
+			} else {
+				if (yDiff > 0) {
+					/* up swipe */
+					rot = 0
+				} else {
+					/* down swipe */
+					rot = 180
+				}
+			}
+			/* reset values */
+			xDown = null;
+			yDown = null;
+		};
+		var xPos = null;
+		var yPos = null;
+		window.addEventListener("touchmove", function(event) {
+			var touch = event.originalEvent.touches[0];
+			oldX = xPos;
+			oldY = yPos;
+			xPos = touch.pageX;
+			yPos = touch.pageY;
+			if (oldX == null && oldY == null) {
+				return false;
+			} else {
+				if (Math.abs(oldX - xPos) > Math.abs(oldY - yPos)) {
+					event.preventDefault();
+					return false;
+				}
+			}
+		});
+
+		window.addEventListener("gamepadconnected", function(e) {
+			var gp = navigator.getGamepads()[e.gamepad.index];
+			console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+				gp.index, gp.id,
+				gp.buttons.length, gp.axes.length);
+			universalIndex = gp.index
+		});
+
+
+		function buttonPressed(b) {
+			if (typeof(b) == "object") {
+				return b.pressed;
+			}
+			return b == 1.0;
+		}
+	</script>
+</body>
+
 </html>
