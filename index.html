@@ -75,10 +75,12 @@
 		setInterval(function() {
 			var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
 			var gp = gamepads[universalIndex];
+			if(universalIndex !=null){
 			for (var i = 0; i < gp.buttons.length; i++) {
 				if (buttonPressed(gp.buttons[i])) {
 					console.log("button " + i + " was pressed")
 				}
+			}
 			}
 
 			height = window.innerHeight
